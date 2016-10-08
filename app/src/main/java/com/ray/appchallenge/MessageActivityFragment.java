@@ -4,15 +4,19 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ray.appchallenge.adapter.MsgAdapter;
 import com.ray.appchallenge.dto.Msg;
 import com.ray.appchallenge.http.ApiServiceImpl;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -24,8 +28,9 @@ import retrofit2.Response;
  */
 public class MessageActivityFragment extends Fragment {
 
-    public MessageActivityFragment() {
-    }
+
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +53,7 @@ public class MessageActivityFragment extends Fragment {
             @Override
             public void onResponse(retrofit2.Call<List<Msg>> call, Response<List<Msg>> response) {
                 showMsg("onResponse");
+                initRecyclerView(response.body());
             }
 
             @Override
@@ -57,6 +63,12 @@ public class MessageActivityFragment extends Fragment {
         });
     }
 
+    private void initRecyclerView(List<Msg> list){
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(new MsgAdapter(list));
+    }
     private void showMsg(final String m){
         Snackbar.make(getView(),m, Snackbar.LENGTH_LONG).show();
     }
