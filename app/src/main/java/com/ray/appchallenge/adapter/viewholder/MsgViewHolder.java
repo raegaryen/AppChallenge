@@ -10,12 +10,14 @@ import android.widget.TextView;
 import com.ray.appchallenge.R;
 import com.ray.appchallenge.dto.Msg;
 
+import java.util.Date;
 
 
 public class MsgViewHolder extends RecyclerView.ViewHolder {
 
     private ViewGroup container;
     private TextView textView;
+    private TextView timeTextView;
 
     public static MsgViewHolder create(ViewGroup viewGroup){
 
@@ -27,11 +29,14 @@ public class MsgViewHolder extends RecyclerView.ViewHolder {
     public MsgViewHolder(final ViewGroup itemView) {
         super(itemView);
         this.container = itemView;
-        this.textView = (TextView) itemView.findViewById(R.id.viewholer_text);
+        this.textView = (TextView) itemView.findViewById(R.id.viewholder_text);
+        this.timeTextView = (TextView) itemView.findViewById(R.id.viewholder_time);
     }
 
     public void bindData(final Msg item){
         textView.setText(item.text);
+        Date date = new Date(item.time);
+        timeTextView.setText(date.toString());
     }
 
 }
