@@ -10,6 +10,6 @@ import retrofit2.http.Path;
 
 public interface APIService {
 
-    @GET("master/{id}.users")
+    @GET("master/{id}.json")
     Call<List<Msg>> getList(@Path("id") int page);
 }

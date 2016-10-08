@@ -1,5 +1,7 @@
 package com.ray.appchallenge;
 
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,9 @@ import com.ray.appchallenge.http.ApiServiceImpl;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -25,25 +30,35 @@ public class MessageActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_message, container, false);
+        View view = inflater.inflate(R.layout.fragment_message, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
-//        ApiServiceImpl api =  new ApiServiceImpl();
-//        retrofit2.Call<List<Msg>> call = api.getList(0);
-//        call.enqueue(new Callback<List<Msg>>() {
-//            @Override
-//            public void onResponse(retrofit2.Call<List<Msg>> call, Response<List<Msg>> response) {
-//                int i =1+1;
-//            }
-//
-//            @Override
-//            public void onFailure(retrofit2.Call<List<Msg>> call, Throwable t) {
-//                int i =1+1;
-//            }
-//        });
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view,savedInstanceState);
     }
+
+    @OnClick(R.id.activate_button)
+    public void request(){
+        ApiServiceImpl api =  new ApiServiceImpl();
+        Call<List<Msg>> call = api.getList(0);
+        call.enqueue(new Callback<List<Msg>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<Msg>> call, Response<List<Msg>> response) {
+                showMsg("onResponse");
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<Msg>> call, Throwable t) {
+                showMsg("onFailure");
+            }
+        });
+    }
+
+    private void showMsg(final String m){
+        Snackbar.make(getView(),m, Snackbar.LENGTH_LONG).show();
+    }
+
 }

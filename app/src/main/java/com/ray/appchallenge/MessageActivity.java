@@ -9,6 +9,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.ray.appchallenge.dto.Msg;
+import com.ray.appchallenge.http.ApiServiceImpl;
+
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MessageActivity extends AppCompatActivity {
 
     @Override
@@ -40,4 +48,5 @@ public class MessageActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

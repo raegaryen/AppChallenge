@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author Raymond Chenon
@@ -17,8 +18,8 @@ public class ApiServiceImpl {
 
     public ApiServiceImpl(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com")
-                //.addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://rawgit.com/zbsz/test_app/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         service = retrofit.create(APIService.class);
