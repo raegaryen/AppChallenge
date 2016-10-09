@@ -5,6 +5,7 @@ import java.util.List;
 import com.ray.appchallenge.adapter.MsgAdapter;
 import com.ray.appchallenge.dto.Msg;
 import com.ray.appchallenge.http.ApiServiceImpl;
+import com.ray.appchallenge.view.SwipeRefreshLayoutBottom;
 
 import android.os.Bundle;
 
@@ -13,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +35,7 @@ import retrofit2.Response;
 public class MessageActivityFragment extends Fragment {
 
     @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayoutBottom swipeRefreshLayout;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -56,7 +56,7 @@ public class MessageActivityFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayoutBottom.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     refreshItems();

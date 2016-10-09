@@ -29,7 +29,9 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgViewHolder> {
     }
 
     public void addItems(final List<Msg> newItems) {
-        list.addAll(newItems);
+        if (newItems != null && !newItems.isEmpty()) {
+            list.addAll(newItems);
+        }
     }
 
     @Override
