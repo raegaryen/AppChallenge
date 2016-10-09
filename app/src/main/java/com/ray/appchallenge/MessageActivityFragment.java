@@ -94,8 +94,11 @@ public class MessageActivityFragment extends Fragment {
 
     private void onItemsLoadComplete(final List<Msg> list) {
         msgAdapter.addItems(list);
-
         swipeRefreshLayout.setRefreshing(false);
+        synchronized (msgAdapter) {
+            msgAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private void initRecyclerView(final List<Msg> list) {
