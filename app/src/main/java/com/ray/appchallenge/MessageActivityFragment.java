@@ -46,6 +46,8 @@ public class MessageActivityFragment extends Fragment {
 
     private MsgAdapter msgAdapter;
 
+    private final int PAGE_LIMIT = 404;
+
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
             final Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class MessageActivityFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initRecyclerView();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayoutBottom.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -69,7 +72,10 @@ public class MessageActivityFragment extends Fragment {
     }
 
     private void refreshItems() {
-        page++;
+        if (page < PAGE_LIMIT) {
+            page++;
+        }
+
         request();
     }
 
@@ -80,11 +86,8 @@ public class MessageActivityFragment extends Fragment {
                 @Override
                 public void onResponse(final retrofit2.Call<List<Msg>> call, final Response<List<Msg>> response) {
                     showMsg(MessageFormat.format(getString(R.string.success_page), page));
-                    if (page == 0) {
-                        initRecyclerView(response.body());
-                    } else {
-                        onItemsLoadComplete(response.body());
-                    }
+
+                    onItemsLoadComplete(response.body());
                 }
 
                 @Override
@@ -103,11 +106,11 @@ public class MessageActivityFragment extends Fragment {
 
     }
 
-    private void initRecyclerView(final List<Msg> list) {
+    private void initRecyclerView() {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        msgAdapter = new MsgAdapter(list);
+        msgAdapter = new MsgAdapter();
         recyclerView.setAdapter(msgAdapter);
     }
 

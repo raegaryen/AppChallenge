@@ -1,5 +1,6 @@
 package com.ray.appchallenge.adapter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.ray.appchallenge.adapter.viewholder.MsgViewHolder;
@@ -14,6 +15,10 @@ import android.view.ViewGroup;
 public class MsgAdapter extends RecyclerView.Adapter<MsgViewHolder> {
 
     private List<Msg> list;
+
+    public MsgAdapter() {
+        this.list = new LinkedList<Msg>();
+    }
 
     public MsgAdapter(final List<Msg> list) {
         this.list = list;
