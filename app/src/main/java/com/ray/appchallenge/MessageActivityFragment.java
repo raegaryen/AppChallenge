@@ -1,5 +1,7 @@
 package com.ray.appchallenge;
 
+import java.text.MessageFormat;
+
 import java.util.List;
 
 import com.ray.appchallenge.adapter.MsgAdapter;
@@ -77,7 +79,7 @@ public class MessageActivityFragment extends Fragment {
         call.enqueue(new Callback<List<Msg>>() {
                 @Override
                 public void onResponse(final retrofit2.Call<List<Msg>> call, final Response<List<Msg>> response) {
-                    showMsg("onResponse");
+                    showMsg(MessageFormat.format(getString(R.string.success_page), page));
                     if (page == 0) {
                         initRecyclerView(response.body());
                     } else {
@@ -87,7 +89,7 @@ public class MessageActivityFragment extends Fragment {
 
                 @Override
                 public void onFailure(final retrofit2.Call<List<Msg>> call, final Throwable t) {
-                    showMsg("onFailure");
+                    showMsg(getString(R.string.error));
                 }
             });
     }

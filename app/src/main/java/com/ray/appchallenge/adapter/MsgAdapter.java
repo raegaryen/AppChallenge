@@ -5,6 +5,8 @@ import java.util.List;
 import com.ray.appchallenge.adapter.viewholder.MsgViewHolder;
 import com.ray.appchallenge.dto.Msg;
 
+import android.support.annotation.NonNull;
+
 import android.support.v7.widget.RecyclerView;
 
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgViewHolder> {
         holder.bindData(item);
     }
 
-    public void addItems(final List<Msg> newItems) {
+    public void addItems(@NonNull final List<Msg> newItems) {
         if (newItems != null && !newItems.isEmpty()) {
             list.addAll(newItems);
         }
