@@ -57,11 +57,12 @@ public class InlineImageAdapterDelegate extends AdapterDelegate<List<AbstractMod
 
         vh.text1.setText(model.text1);
         vh.text2.setText(model.text2);
+        vh.time.setText(model.time);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView text1, text2;
+        private TextView text1, text2, time;
         private ImageView imageView;
 
         public ViewHolder(final View itemView) {
@@ -69,6 +70,7 @@ public class InlineImageAdapterDelegate extends AdapterDelegate<List<AbstractMod
 
             text1 = (TextView) itemView.findViewById(R.id.viewholder_inline_text1);
             text2 = (TextView) itemView.findViewById(R.id.viewholder_inline_text2);
+            time = (TextView) itemView.findViewById(R.id.viewholder_inline_time);
             imageView = (ImageView) itemView.findViewById(R.id.viewholder_inline_imageview);
         }
     }

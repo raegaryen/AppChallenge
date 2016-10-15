@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_bg"
+    android:elevation="@dimen/elevation"
+    android:layout_marginTop="@dimen/vertical_margin"
+    android:layout_marginBottom="@dimen/vertical_margin">
 
     <TextView
         android:id="@+id/viewholder_inline_text1"
@@ -15,8 +19,8 @@
 
     <ImageView
         android:id="@+id/viewholder_inline_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"/>
 
     <TextView
         android:id="@+id/viewholder_inline_text2"
@@ -25,5 +29,13 @@
         tools:text="text2"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/viewholder_inline_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        tools:text="12h30"
+        android:textSize="@dimen/time_textsize"/>
 
 </LinearLayout>

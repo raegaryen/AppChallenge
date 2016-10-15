@@ -9,5 +9,6 @@
     <dimen name="time_textsize">12sp</dimen>
     <dimen name="textsize">16sp</dimen>
 
+    <dimen name="image_size">300dp</dimen>
 
 </resources>
