@@ -1,5 +1,7 @@
 package com.ray.appchallenge.model;
 
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +41,9 @@ public class MsgTransformer {
 
     private String convertTimestamp(final long timestamp) {
         Date date = new Date(timestamp);
-        return date.toString();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("H:mm:ss");
+        return timeFormat.format(date);
+// return date.toString();
     }
 
     @VisibleForTesting
