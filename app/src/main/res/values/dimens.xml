@@ -3,4 +3,9 @@
     <dimen name="horizontal_margin">10dp</dimen>
     <dimen name="vertical_margin">4dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="elevation">2dp</dimen>
+
+    <dimen name="time_textsize">12sp</dimen>
+
 </resources>
