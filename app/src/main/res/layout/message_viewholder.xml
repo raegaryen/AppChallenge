@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/vertical_margin">
-
-    <TextView
-        android:id="@+id/viewholder_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"/>
+    android:background="@drawable/corner_bg"
+    android:elevation="2dp"
+    android:layout_marginTop="@dimen/vertical_margin"
+    android:layout_marginBottom="@dimen/vertical_margin">
 
     <TextView
         android:id="@+id/viewholder_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:text="blablaba"
         android:textSize="16sp"
         android:textStyle="bold"/>
 
@@ -22,5 +21,13 @@
         android:id="@+id/viewholder_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/viewholder_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        tools:text="12h30"
+        android:textSize="12sp"/>
 
 </LinearLayout>
