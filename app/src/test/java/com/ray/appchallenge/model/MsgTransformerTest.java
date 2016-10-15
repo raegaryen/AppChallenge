@@ -1,10 +1,8 @@
-package com.ray.appchallenge;
+package com.ray.appchallenge.model;
 
 import org.junit.Test;
 
 import com.ray.appchallenge.dto.Msg;
-import com.ray.appchallenge.model.InlineModel;
-import com.ray.appchallenge.model.MsgTransformer;
 
 import junit.framework.Assert;
 
@@ -13,11 +11,8 @@ import junit.framework.Assert;
  */
 
 public class MsgTransformerTest {
-    MsgTransformer transformer;
 
-    public void init() {
-        transformer = new MsgTransformer();
-    }
+    MsgTransformer transformer;
 
     @Test
     public void testInline() {

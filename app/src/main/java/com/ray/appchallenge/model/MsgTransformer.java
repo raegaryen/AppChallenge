@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.ray.appchallenge.dto.Msg;
 
+import android.support.annotation.VisibleForTesting;
+
 /**
  * @author  Raymond Chenon
  */
@@ -23,11 +25,11 @@ public class MsgTransformer {
 
         for (Msg msg : items) {
             if (msg.text.startsWith(HTTPS)) {
-                list.add(new ImageModel(msg.text, convertTimestamp(msg.time)));
+                list.add(transformToImageModel(msg));
             } else if (msg.text.contains(HTTPS)) {
                 list.add(transformToInlineModel(msg));
             } else {
-                list.add(new MessageModel(msg.text, convertTimestamp(msg.time)));
+                list.add(transformToMessageModel(msg));
             }
         }
 
@@ -39,7 +41,18 @@ public class MsgTransformer {
         return date.toString();
     }
 
-    public InlineModel transformToInlineModel(final Msg item) {
+    @VisibleForTesting
+    ImageModel transformToImageModel(final Msg msg) {
+        return new ImageModel(msg.text, convertTimestamp(msg.time));
+    }
+
+    @VisibleForTesting
+    MessageModel transformToMessageModel(final Msg msg) {
+        return new MessageModel(msg.text, convertTimestamp(msg.time));
+    }
+
+    @VisibleForTesting
+    InlineModel transformToInlineModel(final Msg item) {
 
         String[] array = item.text.split(SEPARATOR);
 
