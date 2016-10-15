@@ -17,9 +17,14 @@ public class ApiServiceImpl {
 
     private APIService service;
 
+    private final String BASE_URL = "https://rawgit.com/zbsz/test_app/master/";
+
+    // test the inline image
+// private final String BASE_URL = "https://raw.githubusercontent.com/raegaryen/AppChallenge/master/download/";
+
     public ApiServiceImpl() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://rawgit.com/zbsz/test_app/master/")
-                                                  .addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+                                                  .build();
 
         service = retrofit.create(APIService.class);
     }
