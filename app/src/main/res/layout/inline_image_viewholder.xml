@@ -19,7 +19,8 @@
 
     <ImageView
         android:id="@+id/viewholder_inline_imageview"
-        android:layout_width="@dimen/image_size"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/image_size"/>
 
     <TextView
