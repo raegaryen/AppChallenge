@@ -52,7 +52,7 @@ public class MsgTransformer {
     }
 
     @VisibleForTesting
-    InlineModel transformToInlineModel(final Msg item) {
+    InlineImageModel transformToInlineModel(final Msg item) {
 
         String[] array = item.text.split(SEPARATOR);
 
@@ -68,7 +68,7 @@ public class MsgTransformer {
         String text1 = item.text.substring(0, indexStart);
         String text2 = item.text.substring(indexStart + imageUrl.length());
 
-        return new InlineModel(text1, text2, imageUrl, convertTimestamp(item.time));
+        return new InlineImageModel(text1, text2, imageUrl, convertTimestamp(item.time));
     }
 
 }

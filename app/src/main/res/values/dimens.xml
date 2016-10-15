@@ -7,5 +7,7 @@
     <dimen name="elevation">2dp</dimen>
 
     <dimen name="time_textsize">12sp</dimen>
+    <dimen name="textsize">16sp</dimen>
+
 
 </resources>
