@@ -7,6 +7,7 @@ import java.util.List;
 import com.ray.appchallenge.adapter.MsgAdapter;
 import com.ray.appchallenge.dto.Msg;
 import com.ray.appchallenge.http.ApiServiceImpl;
+import com.ray.appchallenge.swipetodelete.SimpleItemTouchHelperCallback;
 import com.ray.appchallenge.view.SwipeRefreshLayoutBottom;
 
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.support.v4.app.Fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,7 @@ public class MessageActivityFragment extends Fragment {
     int page = 0;
 
     private MsgAdapter msgAdapter;
+    private ItemTouchHelper itemTouchHelper;
 
     private final int PAGE_LIMIT = 404;
 
@@ -112,6 +115,10 @@ public class MessageActivityFragment extends Fragment {
         recyclerView.setLayoutManager(llm);
         msgAdapter = new MsgAdapter();
         recyclerView.setAdapter(msgAdapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(msgAdapter);
+        itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void showMsg(final String m) {
