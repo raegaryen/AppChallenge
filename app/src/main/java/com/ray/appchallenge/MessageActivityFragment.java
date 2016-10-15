@@ -104,8 +104,14 @@ public class MessageActivityFragment extends Fragment {
     }
 
     private void onItemsLoadComplete(final List<Msg> list) {
-        msgAdapter.addItems(transformer.transform(list));
         swipeRefreshLayout.setRefreshing(false);
+
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+
+        msgAdapter.addItems(transformer.transform(list));
+
         synchronized (msgAdapter) {
             msgAdapter.notifyDataSetChanged();
         }

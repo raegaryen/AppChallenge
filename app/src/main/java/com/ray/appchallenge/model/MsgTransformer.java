@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ray.appchallenge.dto.Msg;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
 /**
@@ -19,7 +20,7 @@ public class MsgTransformer {
 
     public MsgTransformer() { }
 
-    public List<AbstractModel> transform(final List<Msg> items) {
+    public List<AbstractModel> transform(@NonNull final List<Msg> items) {
 
         LinkedList<AbstractModel> list = new LinkedList();
 
