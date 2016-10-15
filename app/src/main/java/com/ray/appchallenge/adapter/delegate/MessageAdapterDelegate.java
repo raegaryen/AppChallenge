@@ -62,7 +62,7 @@ public class MessageAdapterDelegate extends AdapterDelegate<List<AbstractModel>>
         public MessageViewHolder(final View itemView) {
             super(itemView);
             this.textView = (TextView) itemView.findViewById(R.id.viewholder_text);
-            this.timeTextView = (TextView) itemView.findViewById(R.id.viewholder_time);
+            this.timeTextView = (TextView) itemView.findViewById(R.id.viewholder_text_time);
         }
 
     }

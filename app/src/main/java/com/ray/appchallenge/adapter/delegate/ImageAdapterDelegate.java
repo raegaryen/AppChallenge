@@ -65,7 +65,7 @@ public class ImageAdapterDelegate extends AdapterDelegate<List<AbstractModel>> {
         public ImageViewHolder(final View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.viewholder_imageview);
-            time = (TextView) itemView.findViewById(R.id.viewholder_time);
+            time = (TextView) itemView.findViewById(R.id.viewholder_image_time);
         }
     }
 }
