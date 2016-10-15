@@ -2,10 +2,10 @@ package com.ray.appchallenge.adapter.viewholder;
 
 import java.util.Date;
 
+import com.bumptech.glide.Glide;
+
 import com.ray.appchallenge.R;
 import com.ray.appchallenge.dto.Msg;
-
-import com.squareup.picasso.Picasso;
 
 import android.support.v7.widget.RecyclerView;
 
@@ -47,7 +47,9 @@ public class MsgViewHolder extends RecyclerView.ViewHolder {
         if (item.text.startsWith("https://")) {
             imageView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
-            Picasso.with(container.getContext()).load(item.text).into(imageView);
+
+            Glide.with(container.getContext()).load(item.text).centerCrop().crossFade().into(imageView);
+
         } else {
             imageView.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
