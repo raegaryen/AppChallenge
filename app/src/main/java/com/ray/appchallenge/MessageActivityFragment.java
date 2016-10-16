@@ -76,7 +76,7 @@ public class MessageActivityFragment extends Fragment {
             });
 
         transformer = new MsgTransformer();
-        api = new ApiServiceImpl(getActivity().getApplicationContext().getCacheDir());
+        api = new ApiServiceImpl(getActivity().getApplicationContext());
 
         request();
     }

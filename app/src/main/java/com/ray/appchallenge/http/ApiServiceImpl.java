@@ -1,11 +1,13 @@
 package com.ray.appchallenge.http;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
 
 import com.ray.appchallenge.http.dto.Msg;
+import com.ray.appchallenge.util.NetworkUtil;
+
+import android.content.Context;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -32,13 +34,13 @@ public class ApiServiceImpl {
     // test the inline image
 // private final String BASE_URL = "https://raw.githubusercontent.com/raegaryen/AppChallenge/master/download/";
 
-    public ApiServiceImpl(final File cacheDir) {
+    public ApiServiceImpl(final Context context) {
 
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
-        Cache cache = new Cache(cacheDir, cacheSize);
+        Cache cache = new Cache(context.getCacheDir(), cacheSize);
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        client = httpClient.addInterceptor(new CachingControlInterceptor()).cache(cache).build();
+        client = httpClient.addInterceptor(new CachingControlInterceptor(context)).cache(cache).build();
 
         initRetrofit();
     }
@@ -57,11 +59,22 @@ public class ApiServiceImpl {
 
     static class CachingControlInterceptor implements Interceptor {
 
+        private Context context;
+
+        public CachingControlInterceptor(final Context context) {
+            this.context = context;
+        }
+
         @Override
         public Response intercept(final Chain chain) throws IOException {
             Request request = chain.request();
-            request = request.newBuilder()
-                             .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build();
+            if (NetworkUtil.isNetworkAvailable(context)) {
+                request = request.newBuilder().header("Cache-Control", "public, max-age=" + 60).build();
+            } else {
+                request = request.newBuilder()
+                                 .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7)
+                                 .build();
+            }
 
             return chain.proceed(request);
         }
