@@ -30,7 +30,7 @@ Your app should:
 network connection, it could also remember what entries were previously deleted.
 
 **Done**. The fetched messages are cached with OkHttp.
-Because the messages are transformed to be displayed. The deleted entries are not cached.
+But the deleted entries are not cached because the messages are transformed into a list of displayable objects. 
 If I had more time , I'd cache the list from `AdapterFactory#getItems`.
 
 - inline images, some messages contain a link to an image, it owuld be nice to display those images inline
@@ -45,3 +45,5 @@ I thought of my "own" bonus points as improvements :
 **Picasso was replaced by Glide. The slow fling is fixed**
 
 - The list can contain a date header separating groups of messages from different day. Exactly like Wire, WhatsApp .
+
+**DONE , look at `DateHeaderAdapterDelegate`. There are also additional tests in `MsgTransformerTest`. **
