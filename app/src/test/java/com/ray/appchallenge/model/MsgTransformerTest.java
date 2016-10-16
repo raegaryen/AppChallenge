@@ -1,5 +1,8 @@
 package com.ray.appchallenge.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +23,25 @@ public class MsgTransformerTest {
     @Before
     public void init() {
         transformer = new MsgTransformer();
+    }
+
+    @Test
+    public void checkWholeTransformerKeepsListOrder() {
+
+        List<Msg> list = new LinkedList<>();
+        list.add(getTextMsg("blabla"));
+        list.add(getImageMsg());
+        list.add(getTextMsg("2nd text message"));
+        list.add(getInlineImageMsg());
+        list.add(getTextMsg("3rd text message"));
+
+        List<AbstractModel> models = transformer.transform(list);
+
+        assert (models.get(0) instanceof MessageModel);
+        assert (models.get(1) instanceof ImageModel);
+        assert (models.get(2) instanceof MessageModel);
+        assert (models.get(3) instanceof InlineImageModel);
+        assert (models.get(4) instanceof MessageModel);
     }
 
     @Test
@@ -62,23 +84,26 @@ public class MsgTransformerTest {
     }
 
     private Msg getInlineImageMsg() {
-        return new Msg("dfjfgj", "Ray likes https://stackoverflow.com/ and drinks some tea", getTimestamp());
+        return new Msg(getId(), "Ray likes https://stackoverflow.com/ and drinks some tea", getTimestamp());
     }
 
     private Msg getImageMsg() {
-        return new Msg("ggdh", IMAGE_URL, getTimestamp());
+        return new Msg(getId(), IMAGE_URL, getTimestamp());
     }
 
     private Msg getTextMsg(final String text) {
-        return new Msg("whateverid", text, getTimestamp());
+        return new Msg(getId(), text, getTimestamp());
     }
 
     private long getTimestamp() {
         return System.currentTimeMillis();
     }
 
-    private long getId() {
-        return System.currentTimeMillis();
+    private String getId() {
+
+        // make the ID unique
+        Long longInstance = new Long(getTimestamp());
+        return longInstance.toString();
     }
 
 }
