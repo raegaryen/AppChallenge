@@ -46,4 +46,4 @@ I thought of my "own" bonus points as improvements :
 
 - The list can contain a date header separating groups of messages from different day. Exactly like Wire, WhatsApp .
 
-**DONE , look at `DateHeaderAdapterDelegate`. There are also additional tests in `MsgTransformerTest`.**
+**DONE , `DateHeaderAdapterDelegate` implements this. There are also additional tests in `MsgTransformerTest`.**
