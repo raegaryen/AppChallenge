@@ -53,7 +53,8 @@ public class ImageAdapterDelegate extends AdapterDelegate<List<AbstractModel>> {
         ImageViewHolder vh = (ImageViewHolder) holder;
         ImageModel model = (ImageModel) items.get(position);
 
-        Glide.with(vh.imageView.getContext()).load(model.imageUrl).centerCrop().crossFade().into(vh.imageView);
+        Glide.with(vh.imageView.getContext()).load(model.imageUrl).thumbnail(0.2f).fitCenter().crossFade().into(
+            vh.imageView);
         vh.time.setText(model.time);
     }
 
