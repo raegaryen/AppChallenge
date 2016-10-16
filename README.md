@@ -13,7 +13,7 @@ Your app should:
 - download messages from specified endpoint. **DONE look inside ```ApiServiceImpl``` class**
 - display messages in scrollable list on screen. **DONE**
 - give user a way to delete specific message, preferably by swiping, but long press is also acceptable. 
-**DONE swipe is left or right**
+**DONE message deletion is swipe to left or right **
 
 
 ## Suggestions for bonus points
