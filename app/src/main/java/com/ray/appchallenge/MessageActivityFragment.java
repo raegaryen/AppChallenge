@@ -103,6 +103,7 @@ public class MessageActivityFragment extends Fragment {
                 @Override
                 public void onFailure(final retrofit2.Call<List<Msg>> call, final Throwable t) {
                     showMsg(getString(R.string.error));
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             });
     }
