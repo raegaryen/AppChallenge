@@ -38,21 +38,7 @@ public class ApiServiceImpl {
         Cache cache = new Cache(cacheDir, cacheSize);
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(final Interceptor.Chain chain) throws IOException {
-                    Request original = chain.request();
-
-                    // Request customization: add request headers
-                    Request.Builder requestBuilder = original.newBuilder().addHeader("Cache-Control",
-                            String.format("max-age=%d", 50000));
-
-                    Request request = requestBuilder.build();
-                    return chain.proceed(request);
-                }
-            });
-
-        client = new OkHttpClient.Builder().cache(cache).build();
+        client = httpClient.addInterceptor(new CachingControlInterceptor()).cache(cache).build();
 
         initRetrofit();
     }
@@ -67,5 +53,17 @@ public class ApiServiceImpl {
 
     public Call<List<Msg>> getList(final int page) {
         return service.getList(page);
+    }
+
+    static class CachingControlInterceptor implements Interceptor {
+
+        @Override
+        public Response intercept(final Chain chain) throws IOException {
+            Request request = chain.request();
+            request = request.newBuilder()
+                             .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build();
+
+            return chain.proceed(request);
+        }
     }
 }
