@@ -53,7 +53,8 @@ public class InlineImageAdapterDelegate extends AdapterDelegate<List<AbstractMod
         InlineImageAdapterDelegate.ViewHolder vh = (ViewHolder) holder;
         InlineImageModel model = (InlineImageModel) items.get(position);
 
-        Glide.with(vh.imageView.getContext()).load(model.imageUrl).centerCrop().crossFade().into(vh.imageView);
+        Glide.with(vh.imageView.getContext()).load(model.imageUrl).thumbnail(0.2f).fitCenter().crossFade()
+             .error(R.drawable.ic_error).into(vh.imageView);
 
         vh.text1.setText(model.text1);
         vh.text2.setText(model.text2);

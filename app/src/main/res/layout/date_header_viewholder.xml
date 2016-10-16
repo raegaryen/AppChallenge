@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         tools:text="Sunday , 16 October 2016"
-        android:padding="3dp"
+        android:layout_margin="5dp"
         android:textSize="@dimen/textsize"
-        android:background="@color/white"/>
+        android:background="@drawable/corner_bg"/>
 
 </FrameLayout>
