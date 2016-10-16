@@ -7,6 +7,8 @@ There is no MVP pattern because most of the logic is implemented in the `*Adapte
 
 The `MsgTransformer` converts the .JSON list into different displayable objects.
 
+No Dependency Injection libraries or RxJava were needed due to the simplicity of the app.
+
 ## Requirements
 Your app should:
 
@@ -22,7 +24,7 @@ Your app should:
 
 > You could detect that user is scrolling and getting close to the end of the list, this could trigger fetching of more messages.
 
-**Done , I used `SwipeRefreshLayoutBottom`, but the fetching is triggered only the RecyclerView reaches the end of the list not before**
+**Done , I used `SwipeRefreshLayoutBottom`, but the fetching is triggered only when the RecyclerView reaches the end of the list not before**
 
 - caching, it would be good if the app was able to display previously fetched messages even when it is restarted without
 network connection, it could also remember what entries were previously deleted.
