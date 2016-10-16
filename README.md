@@ -15,7 +15,7 @@ Your app should:
 - download messages from specified endpoint. **DONE look inside ```ApiServiceImpl``` class**
 - display messages in scrollable list on screen. **DONE**
 - give user a way to delete specific message, preferably by swiping, but long press is also acceptable. 
-**DONE message deletion is swipe to left or right **
+**DONE message deletion is swipe to left or right**
 
 
 ## Suggestions for bonus points
@@ -28,6 +28,20 @@ Your app should:
 
 - caching, it would be good if the app was able to display previously fetched messages even when it is restarted without
 network connection, it could also remember what entries were previously deleted.
-**NOT DONE**
+
+**Done**. The fetched messages are cached with OkHttp.
+Because the messages are transformed to be displayed. The deleted entries are not cached.
+If I had more time , I'd cache the list from `AdapterFactory#getItems`.
+
 - inline images, some messages contain a link to an image, it owuld be nice to display those images inline
+
 **DONE , in the current repo there is no messages containing an image url . In ```ApiServiceImpl``` , there is another endpoint in the comment**
+
+## My "own" bonus points
+I thought of my "own" bonus points as improvements :
+
+- some images are so large that the fling on RecyclerView is slow. Unsplash has a REST API to crop images ,  https://unsplash.com/photos/IoCWq07GaG4/download becomes lighter https://source.unsplash.com/IoCWq07GaG4/640x480
+
+**Picasso was replaced by Glide. The slow fling is fixed**
+
+- The list can contain a date header separating groups of messages from different day. Exactly like Wire, WhatsApp .
