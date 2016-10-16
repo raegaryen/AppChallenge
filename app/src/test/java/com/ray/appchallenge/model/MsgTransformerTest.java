@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ray.appchallenge.dto.Msg;
+import com.ray.appchallenge.http.dto.Msg;
 
 import junit.framework.Assert;
 

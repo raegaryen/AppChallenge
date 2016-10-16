@@ -2,7 +2,7 @@ package com.ray.appchallenge.http;
 
 import java.util.List;
 
-import com.ray.appchallenge.dto.Msg;
+import com.ray.appchallenge.http.dto.Msg;
 
 import retrofit2.Call;
 

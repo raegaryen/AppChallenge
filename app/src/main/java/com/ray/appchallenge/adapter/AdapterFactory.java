@@ -68,6 +68,10 @@ public class AdapterFactory extends RecyclerView.Adapter implements ItemTouchHel
         }
     }
 
+    public List<AbstractModel> getItems() {
+        return list;
+    }
+
     @Override
     public boolean onItemMove(final int fromPosition, final int toPosition) {
         Collections.swap(list, fromPosition, toPosition);

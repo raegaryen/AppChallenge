@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.ray.appchallenge.dto.Msg;
+import com.ray.appchallenge.http.dto.Msg;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;

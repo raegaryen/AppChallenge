@@ -5,8 +5,8 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import com.ray.appchallenge.adapter.AdapterFactory;
-import com.ray.appchallenge.dto.Msg;
 import com.ray.appchallenge.http.ApiServiceImpl;
+import com.ray.appchallenge.http.dto.Msg;
 import com.ray.appchallenge.model.MsgTransformer;
 import com.ray.appchallenge.swipetodelete.SimpleItemTouchHelperCallback;
 import com.ray.appchallenge.view.SwipeRefreshLayoutBottom;
@@ -51,6 +51,8 @@ public class MessageActivityFragment extends Fragment {
     private ItemTouchHelper itemTouchHelper;
     private MsgTransformer transformer;
 
+    private ApiServiceImpl api;
+
     private final int PAGE_LIMIT = 404;
 
     @Override
@@ -74,6 +76,8 @@ public class MessageActivityFragment extends Fragment {
             });
 
         transformer = new MsgTransformer();
+        api = new ApiServiceImpl(getActivity().getApplicationContext().getCacheDir());
+
         request();
     }
 
@@ -86,7 +90,7 @@ public class MessageActivityFragment extends Fragment {
     }
 
     public void request() {
-        ApiServiceImpl api = new ApiServiceImpl();
+
         Call<List<Msg>> call = api.getList(page);
         call.enqueue(new Callback<List<Msg>>() {
                 @Override
