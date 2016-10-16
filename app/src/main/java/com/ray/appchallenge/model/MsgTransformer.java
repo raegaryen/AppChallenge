@@ -2,6 +2,7 @@ package com.ray.appchallenge.model;
 
 import java.text.SimpleDateFormat;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,13 +21,25 @@ public class MsgTransformer {
     private static final String HTTPS = "https://";
     private static final String SEPARATOR = " ";
 
-    public MsgTransformer() { }
+    private int currentEntryDay;
+    private int previousEntryDay;
+    private Calendar calendar;
+
+    public MsgTransformer() {
+
+        calendar = Calendar.getInstance();
+    }
 
     public List<AbstractModel> transform(@NonNull final List<Msg> items) {
 
         LinkedList<AbstractModel> list = new LinkedList();
 
         for (Msg msg : items) {
+            currentEntryDay = getDay(msg.time);
+            if (currentEntryDay != previousEntryDay) {
+                list.add(transformToTimeHeaderModel(msg.time));
+            }
+
             if (msg.text.startsWith(HTTPS)) {
                 list.add(transformToImageModel(msg));
             } else if (msg.text.contains(HTTPS)) {
@@ -34,15 +47,32 @@ public class MsgTransformer {
             } else {
                 list.add(transformToMessageModel(msg));
             }
+
+            previousEntryDay = currentEntryDay;
         }
 
         return list;
     }
 
+    private int getDay(final long timestamp) {
+        calendar.setTimeInMillis(timestamp);
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
     private String convertTimestamp(final long timestamp) {
         Date date = new Date(timestamp);
+
         SimpleDateFormat timeFormat = new SimpleDateFormat("H:mm:ss");
         return timeFormat.format(date);
+
+    }
+
+    @VisibleForTesting
+    DateHeaderModel transformToTimeHeaderModel(final long timestamp) {
+        Date date = new Date(timestamp);
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("EEE, dd MMM yyyy");
+        return new DateHeaderModel(timeFormat.format(date));
 // return date.toString();
     }
 

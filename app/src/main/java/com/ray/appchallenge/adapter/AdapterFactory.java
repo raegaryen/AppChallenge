@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegatesManager;
 
+import com.ray.appchallenge.adapter.delegate.DateHeaderAdapterDelegate;
 import com.ray.appchallenge.adapter.delegate.ImageAdapterDelegate;
 import com.ray.appchallenge.adapter.delegate.InlineImageAdapterDelegate;
 import com.ray.appchallenge.adapter.delegate.MessageAdapterDelegate;
@@ -35,6 +36,7 @@ public class AdapterFactory extends RecyclerView.Adapter implements ItemTouchHel
         delegatesManager.addDelegate(new ImageAdapterDelegate(activity));
         delegatesManager.addDelegate(new MessageAdapterDelegate(activity));
         delegatesManager.addDelegate(new InlineImageAdapterDelegate(activity));
+        delegatesManager.addDelegate(new DateHeaderAdapterDelegate(activity));
     }
 
     @Override

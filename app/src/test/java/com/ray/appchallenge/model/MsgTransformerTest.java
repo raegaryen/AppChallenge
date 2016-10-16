@@ -37,11 +37,33 @@ public class MsgTransformerTest {
 
         List<AbstractModel> models = transformer.transform(list);
 
-        assert (models.get(0) instanceof MessageModel);
-        assert (models.get(1) instanceof ImageModel);
-        assert (models.get(2) instanceof MessageModel);
+        assert (models.get(0) instanceof DateHeaderModel); // always start with a date header
+        assert (models.get(1) instanceof MessageModel);
+        assert (models.get(2) instanceof ImageModel);
+        assert (models.get(3) instanceof MessageModel);
+        assert (models.get(4) instanceof InlineImageModel);
+        assert (models.get(5) instanceof MessageModel);
+    }
+
+    @Test
+    public void checkWholeTransformerWithDateHeader() {
+
+        List<Msg> list = new LinkedList<>();
+        list.add(getTextMsg("blabla"));
+        list.add(getImageMsg());
+        list.add(getInlineImageMsg());
+        list.add(getTextMsg24hLater("2nd text message"));
+        list.add(getTextMsg24hLater("3rd text message"));
+
+        List<AbstractModel> models = transformer.transform(list);
+
+        assert (models.get(0) instanceof DateHeaderModel);
+        assert (models.get(1) instanceof MessageModel);
+        assert (models.get(2) instanceof ImageModel);
         assert (models.get(3) instanceof InlineImageModel);
-        assert (models.get(4) instanceof MessageModel);
+        assert (models.get(4) instanceof DateHeaderModel);
+        assert (models.get(5) instanceof MessageModel);
+        assert (models.get(6) instanceof MessageModel);
     }
 
     @Test
@@ -93,6 +115,10 @@ public class MsgTransformerTest {
 
     private Msg getTextMsg(final String text) {
         return new Msg(getId(), text, getTimestamp());
+    }
+
+    private Msg getTextMsg24hLater(final String text) {
+        return new Msg(getId(), text, getTimestamp() + 24 * 60 * 60 * 1000);
     }
 
     private long getTimestamp() {
