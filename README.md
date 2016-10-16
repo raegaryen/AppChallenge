@@ -2,12 +2,17 @@ Coding challenge
 ================
 ![Build Status - Master](https://travis-ci.org/raegaryen/AppChallenge.svg?branch=master)
 
-## General
+## General infos
 There is no MVP pattern because most of the logic is implemented in the `*AdapterDelegate` classes to manage different view types. So that not all the logic is NOT in a single big Adapter.
 
 The `MsgTransformer` converts the .JSON list into different displayable objects.
 
-No Dependency Injection libraries or RxJava were needed due to the simplicity of the app.
+No Dependency Injection or asynchronous (RxJava) libraries were needed due to the simplicity of the app.
+
+Things I could have added :
+ - save the list in Bundle on rotation. A bit unecessary since fetched messages are cached.
+ - Espresso test to scroll the list from page 0 to 404
+ - MVP or MVVM pattern would have made the testing of `MessageActivityFragment` easier
 
 ## Requirements
 Your app should:
