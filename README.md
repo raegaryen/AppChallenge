@@ -19,6 +19,7 @@ Your app should:
 ## Suggestions for bonus points
 
 - lazy loading, client doesn't need to load all available messages on start, notice that messages are sorted, and more pages can be fetched when user scrolls through the list. 
+
 > You could detect that user is scrolling and getting close to the end of the list, this could trigger fetching of more messages.
 
 **Done , I used `SwipeRefreshLayoutBottom`, but the fetching is triggered only the RecyclerView reaches the end of the list not before**
