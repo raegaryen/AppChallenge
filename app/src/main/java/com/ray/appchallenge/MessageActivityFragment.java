@@ -95,8 +95,6 @@ public class MessageActivityFragment extends Fragment {
         call.enqueue(new Callback<List<Msg>>() {
                 @Override
                 public void onResponse(final retrofit2.Call<List<Msg>> call, final Response<List<Msg>> response) {
-                    showMsg(MessageFormat.format(getString(R.string.success_page), page));
-
                     onItemsLoadComplete(response.body());
                 }
 
@@ -112,8 +110,11 @@ public class MessageActivityFragment extends Fragment {
         swipeRefreshLayout.setRefreshing(false);
 
         if (list == null || list.isEmpty()) {
+            showMsg(getString(R.string.error));
             return;
         }
+
+        showMsg(MessageFormat.format(getString(R.string.success_page), page));
 
         msgAdapter.addItems(transformer.transform(list));
 
